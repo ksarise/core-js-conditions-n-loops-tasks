@@ -368,6 +368,7 @@ function getSpiralMatrix(size) {
 function rotateMatrix(matrix) {
   const copyMatrix = matrix;
   const result = [];
+
   for (let i = 0; i < matrix.length; i += 1) {
     result[i] = [];
     for (let j = 0; j < matrix.length; j += 1) {
@@ -419,8 +420,31 @@ function sortByAsc(arr) {
  *  '012345', 3 => '024135' => '043215' => '031425'
  *  'qwerty', 3 => 'qetwry' => 'qtrewy' => 'qrwtey'
  */
-function shuffleChar(/* str, iterations */) {
-  throw new Error('Not implemented');
+function shuffleChar(str, iterations) {
+  let shuffleStr = '';
+  let acc = iterations;
+  let iterStr = str;
+  let count = 0;
+  while (acc > 0) {
+    let oddStr = '';
+    let evenStr = '';
+    for (let i = 0; i < iterStr.length; i += 1) {
+      if (i % 2 === 0) {
+        evenStr += iterStr[i];
+      } else {
+        oddStr += iterStr[i];
+      }
+    }
+    shuffleStr = evenStr + oddStr;
+    acc -= 1;
+    iterStr = shuffleStr;
+    count += 1;
+    if (shuffleStr === str) {
+      acc = iterations % count;
+    }
+  }
+
+  return shuffleStr;
 }
 
 /**
