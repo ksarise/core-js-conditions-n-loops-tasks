@@ -400,7 +400,19 @@ function rotateMatrix(matrix) {
  *  [-2, 9, 5, -3]  => [-3, -2, 5, 9]
  */
 function sortByAsc(arr) {
-  return arr.sort((a, b) => a - b);
+  const sortArr = arr;
+
+  for (let i = sortArr.length - 1; i > 0; i -= 1) {
+    for (let j = 0; j < i; j += 1) {
+      const curr = sortArr[j];
+      const next = sortArr[j + 1];
+      if (curr > next) {
+        sortArr[j + 1] = curr;
+        sortArr[j] = next;
+      }
+    }
+  }
+  return sortArr;
 }
 
 /**
